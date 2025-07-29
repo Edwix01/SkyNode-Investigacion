@@ -1,0 +1,7 @@
+Removed Pin From Net: NetName=SO Pin=MAX1-1
+Removed Pin From Net: NetName=CS Pin=MAX1-2
+Removed Pin From Net: NetName=SCK Pin=MAX1-3
+Removed Pin From Net: NetName=NetBMP1_1 Pin=MAX1-4
+Removed Pin From Net: NetName=NetBMP1_2 Pin=MAX1-5
+Added Pin To Net: NetName=SCK Pin=U1-22
+Added Pin To Net: NetName=CS Pin=U1-26

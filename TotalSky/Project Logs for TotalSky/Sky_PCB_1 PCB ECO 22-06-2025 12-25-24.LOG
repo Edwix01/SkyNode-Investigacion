@@ -1,0 +1,6 @@
+Removed Pin From Net: NetName=SO Pin=U1-23
+Removed Pin From Net: NetName=CS Pin=U1-26
+Added Pin To Net: NetName=CS Pin=U1-23
+Added Pin To Net: NetName=SO Pin=U1-26
+Change Net Name : Old Net Name=GRX New Net Name=GTX
+Change Net Name : Old Net Name=GTX New Net Name=GRX

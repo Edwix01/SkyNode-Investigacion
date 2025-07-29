@@ -1,0 +1,16 @@
+Added Component: Designator=J3(FP-B6B-XH-A_LF_SN-MFG)
+Added Pin To Net: NetName=SDA Pin=J1-2
+Added Pin To Net: NetName=SCL Pin=J1-3
+Added Pin To Net: NetName=NetBMP1_1 Pin=J1-5
+Added Pin To Net: NetName=NetBMP1_1 Pin=J2-1
+Added Pin To Net: NetName=NetBMP1_1 Pin=J2-4
+Added Pin To Net: NetName=8511_1 Pin=J2-3
+Added Pin To Net: NetName=8511_1 Pin=U1-4
+Added Net: Name=8511_1
+Added Pin To Net: NetName=8511_2 Pin=U1-5
+Added Net: Name=8511_2
+Added Pin To Net: NetName=NetJ1_1 Pin=J1-1
+Added Pin To Net: NetName=NetJ1_1 Pin=J1-4
+Added Pin To Net: NetName=NetJ1_1 Pin=J2-2
+Added Pin To Net: NetName=NetJ1_1 Pin=U1-8
+Added Net: Name=NetJ1_1

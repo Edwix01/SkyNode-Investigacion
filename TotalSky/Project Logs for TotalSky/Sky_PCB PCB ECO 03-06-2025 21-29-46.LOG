@@ -1,0 +1,44 @@
+Added Component: Designator=BMP1(BMP280)
+Added Component: Designator=DHT1(DHT11)
+Added Component: Designator=GPS1(GPS)
+Added Component: Designator=MAX1(MAX6675)
+Added Component: Designator=U1(XCVR_ESP32-C3-DEVKITM-1)
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/ESP32-C3-DEVKITM-1/Espressif+Systems/view-part/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Espressif Systems"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "ESP32-C3-DEVKITM-1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/ESP32-C3-DEVKITM-1/Espressif+Systems/view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Pin To Net: NetName=CS Pin=U1-26
+Added Net: Name=CS
+Added Pin To Net: NetName=DHT Pin=DHT1-2
+Added Pin To Net: NetName=DHT Pin=U1-9
+Added Net: Name=DHT
+Added Pin To Net: NetName=NetBMP1_1 Pin=BMP1-1
+Added Pin To Net: NetName=NetBMP1_1 Pin=DHT1-1
+Added Pin To Net: NetName=NetBMP1_1 Pin=GPS1-1
+Added Pin To Net: NetName=NetBMP1_1 Pin=MAX1-4
+Added Pin To Net: NetName=NetBMP1_1 Pin=U1-2
+Added Net: Name=NetBMP1_1
+Added Pin To Net: NetName=NetBMP1_2 Pin=BMP1-2
+Added Pin To Net: NetName=NetBMP1_2 Pin=DHT1-3
+Added Pin To Net: NetName=NetBMP1_2 Pin=GPS1-4
+Added Pin To Net: NetName=NetBMP1_2 Pin=MAX1-5
+Added Pin To Net: NetName=NetBMP1_2 Pin=U1-1
+Added Net: Name=NetBMP1_2
+Added Pin To Net: NetName=NetGPS1_2 Pin=GPS1-2
+Added Pin To Net: NetName=NetGPS1_2 Pin=U1-29
+Added Net: Name=NetGPS1_2
+Added Pin To Net: NetName=NetGPS1_3 Pin=GPS1-3
+Added Pin To Net: NetName=NetGPS1_3 Pin=U1-28
+Added Net: Name=NetGPS1_3
+Added Pin To Net: NetName=SCK Pin=U1-22
+Added Net: Name=SCK
+Added Pin To Net: NetName=SCL Pin=BMP1-3
+Added Pin To Net: NetName=SCL Pin=U1-17
+Added Net: Name=SCL
+Added Pin To Net: NetName=SDA Pin=BMP1-4
+Added Pin To Net: NetName=SDA Pin=U1-18
+Added Net: Name=SDA
+Added Pin To Net: NetName=SO Pin=U1-23
+Added Net: Name=SO

@@ -1,0 +1,40 @@
+Added Pin To Net: NetName=CS Pin=MAX1-2
+Added Pin To Net: NetName=CS Pin=U1-J3_5
+Added Net: Name=CS
+Added Pin To Net: NetName=DHT11 Pin=DHT1-2
+Added Pin To Net: NetName=DHT11 Pin=U1-J1_9
+Added Net: Name=DHT11
+Added Pin To Net: NetName=GUVA Pin=U1-J1_4
+Added Net: Name=GUVA
+Added Pin To Net: NetName=GYML8511 Pin=U1-J1_5
+Added Net: Name=GYML8511
+Added Pin To Net: NetName=Net1_2 Pin=BMP1-2
+Added Pin To Net: NetName=Net1_2 Pin=DHT1-3
+Added Pin To Net: NetName=Net1_2 Pin=GPS1-4
+Added Pin To Net: NetName=Net1_2 Pin=MAX1-5
+Added Pin To Net: NetName=Net1_2 Pin=U1-J1_1
+Added Net: Name=Net1_2
+Added Pin To Net: NetName=Net1_3 Pin=BMP1-1
+Added Pin To Net: NetName=Net1_3 Pin=DHT1-1
+Added Pin To Net: NetName=Net1_3 Pin=GPS1-1
+Added Pin To Net: NetName=Net1_3 Pin=MAX1-4
+Added Pin To Net: NetName=Net1_3 Pin=U1-J1_2
+Added Net: Name=Net1_3
+Added Pin To Net: NetName=RX Pin=GPS1-3
+Added Pin To Net: NetName=RX Pin=U1-J3_11
+Added Net: Name=RX
+Added Pin To Net: NetName=SCK Pin=MAX1-3
+Added Pin To Net: NetName=SCK Pin=U1-J3_9
+Added Net: Name=SCK
+Added Pin To Net: NetName=SCL Pin=BMP1-3
+Added Pin To Net: NetName=SCL Pin=U1-J3_14
+Added Net: Name=SCL
+Added Pin To Net: NetName=SDA Pin=BMP1-4
+Added Pin To Net: NetName=SDA Pin=U1-J3_13
+Added Net: Name=SDA
+Added Pin To Net: NetName=SO Pin=MAX1-1
+Added Pin To Net: NetName=SO Pin=U1-J3_8
+Added Net: Name=SO
+Added Pin To Net: NetName=TX Pin=GPS1-2
+Added Pin To Net: NetName=TX Pin=U1-J3_10
+Added Net: Name=TX

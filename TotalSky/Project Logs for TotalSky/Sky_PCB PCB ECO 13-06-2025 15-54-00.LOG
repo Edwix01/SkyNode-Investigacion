@@ -1,0 +1,12 @@
+Added Pin To Net: NetName=NetBMP1_2 Pin=DHT1-1
+Added Pin To Net: NetName=NetBMP1_2 Pin=J1-1
+Added Pin To Net: NetName=NetBMP1_2 Pin=U1-6
+Added Pin To Net: NetName=NetBMP1_2 Pin=U1-8
+Added Pin To Net: NetName=NetBMP1_2 Pin=U1-12
+Added Pin To Net: NetName=NetBMP1_2 Pin=U1-15
+Added Pin To Net: NetName=NetBMP1_2 Pin=U1-19
+Added Pin To Net: NetName=NetBMP1_2 Pin=U1-24
+Added Pin To Net: NetName=NetBMP1_2 Pin=U1-27
+Added Pin To Net: NetName=NetBMP1_2 Pin=U1-30
+Change Net Name : Old Net Name=NetBMP1_2 New Net Name=GND
+Added Rule: Name=Schematic Supply Nets

@@ -1,0 +1,5 @@
+Record=TopLevelDocument|FileName=Sky_Sheet.SchDoc|SheetNumber=1
+Record=SheetSymbol|SourceDocument=Sky_Sheet.SchDoc|Designator=Control|SchDesignator=Control|FileName=Control.SchDoc|SheetNumber=2|SymbolType=Normal|RawFileName=Control.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 
+Record=SheetSymbol|SourceDocument=Sky_Sheet.SchDoc|Designator=Externo|SchDesignator=Externo|FileName=Externo.SchDoc|SheetNumber=5|SymbolType=Normal|RawFileName=Externo.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 
+Record=SheetSymbol|SourceDocument=Sky_Sheet.SchDoc|Designator=Salida|SchDesignator=Salida|FileName=Salida.SchDoc|SheetNumber=4|SymbolType=Normal|RawFileName=Salida.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 
+Record=SheetSymbol|SourceDocument=Sky_Sheet.SchDoc|Designator=Sensores|SchDesignator=Sensores|FileName=Sensores.SchDoc|SheetNumber=3|SymbolType=Normal|RawFileName=Sensores.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 

@@ -1,0 +1,32 @@
+Removed Pin From Net: NetName=VCC Pin=BMP1-1
+Removed Pin From Net: NetName=VCC Pin=DHT1-1
+Removed Pin From Net: NetName=VCC Pin=GPS1-1
+Removed Pin From Net: NetName=GND Pin=J1-1
+Removed Pin From Net: NetName=VCC Pin=MAX1-4
+Add component: Footprint Not Found MODULE_ESP32-C3-DEVKITM-1U
+Add Pin To Net: Unknown Pin: Pin 1-4
+Add Pin To Net: Unknown Pin: Pin BH1-2
+Add Pin To Net: Unknown Pin: Pin BH1-3
+Add Pin To Net: Unknown Pin: Pin GUVA1-1
+Add Pin To Net: Unknown Pin: Pin OL1-1
+Add Pin To Net: Unknown Pin: Pin OL1-3
+Add Pin To Net: Unknown Pin: Pin OL1-4
+Add Pin To Net: Unknown Pin: Pin U1-J1_1
+Add Pin To Net: Unknown Pin: Pin U1-J1_4
+Add Pin To Net: Unknown Pin: Pin U1-J1_5
+Add Pin To Net: Unknown Pin: Pin U1-J1_9
+Add Pin To Net: Unknown Pin: Pin U1-J3_5
+Add Pin To Net: Unknown Pin: Pin U1-J3_8
+Add Pin To Net: Unknown Pin: Pin U1-J3_9
+Add Pin To Net: Unknown Pin: Pin U1-J3_10
+Add Pin To Net: Unknown Pin: Pin U1-J3_11
+Add Pin To Net: Unknown Pin: Pin U1-J3_13
+Add Pin To Net: Unknown Pin: Pin U1-J3_14
+Change Net Name : Old Net Name=GND New Net Name=NetBMP1_2
+Added Pin To Net: NetName=GND Pin=J1-1
+Added Net: Name=GND
+Added Pin To Net: NetName=NetBMP1_1 Pin=BMP1-1
+Added Pin To Net: NetName=NetBMP1_1 Pin=DHT1-1
+Added Pin To Net: NetName=NetBMP1_1 Pin=GPS1-1
+Added Pin To Net: NetName=NetBMP1_1 Pin=MAX1-4
+Added Net: Name=NetBMP1_1

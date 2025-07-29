@@ -1,0 +1,6 @@
+Added Pin To Net: NetName=GND Pin=TM1-1
+Added Pin To Net: NetName=GND Pin=TM2-1
+Added Pin To Net: NetName=GND Pin=TM3-1
+Added Pin To Net: NetName=GND Pin=TM4-1
+Added Member To Class: ClassName=Sensores Member=Component GPS1 GPS6MV2
+Added Member To Class: ClassName=Control Member=Component U1 ESP32-C3-DEVKITM-1

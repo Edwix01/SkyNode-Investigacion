@@ -1,0 +1,7 @@
+Added Component: Designator=SENS-1(SENSOR-DHT11)
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/DHT11/Aosong+Electronics/view-part/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "aosong"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "DHT11"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/DHT11/Aosong+Electronics/view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"

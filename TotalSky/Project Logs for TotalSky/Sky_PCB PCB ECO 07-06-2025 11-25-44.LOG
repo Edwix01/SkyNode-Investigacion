@@ -1,0 +1,4 @@
+Change Component Footprint: Designator=J1 Old Footprint=MOLX-51281-0694 New Footprint=FP-B6B-XH-A_LF_SN-MFG
+Change Component Comment : Designator=J1 Old Comment=51281-0694 New Comment=B6B-XH-A(LF)(SN)
+Change Managed Component Library Link : Designator=J1 Old VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 New VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 Old ItemGUID=661F7261-DE64-4121-9972-8944E9424851 New ItemGUID=2E4634CB-89C2-4FA9-ADC8-598CEEA6D4A1 Old RevisionGUID=04CAC78E-6CA6-45FD-A20E-3625D9DDF771 New RevisionGUID=4131B36C-4EB7-46E9-980F-D4F9D5ECA89D
+Change component parameters: Designator = "J1" ("J1"); Footprint = "MOLX-51281-0694"; UniqueID = "\BHSBASDE" ("\BHSBASDE")

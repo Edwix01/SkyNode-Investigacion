@@ -1,0 +1,4 @@
+Added Component: Designator=GPS1(GPS)
+Added Pin To Net: NetName=VCC1 Pin=GPS1-1
+Added Pin To Net: NetName=TX Pin=GPS1-2
+Added Pin To Net: NetName=RX Pin=GPS1-3

@@ -1,0 +1,10 @@
+Change Component Designator: OldDesignator=P? NewDesignator=P2
+Added Component: Designator=TM1(Tornillo M3)
+Added Component: Designator=TM2(Tornillo M3)
+Added Component: Designator=TM3(Tornillo M3)
+Added Component: Designator=TM4(Tornillo M3)
+Add Pin To Net: Unknown Pin: Pin TM1-21
+Add Pin To Net: Unknown Pin: Pin TM2-21
+Add Pin To Net: Unknown Pin: Pin TM3-21
+Add Pin To Net: Unknown Pin: Pin TM4-21
+Added Member To Class: ClassName=Sensores Member=Component GPS1 GPS6MV2

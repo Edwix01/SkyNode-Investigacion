@@ -1,0 +1,3 @@
+Removed Pin From Net: NetName=NetBMP1_1 Pin=DHT1-1
+Removed Pin From Net: NetName=DHT Pin=DHT1-2
+Removed Pin From Net: NetName=NetBMP1_2 Pin=DHT1-3

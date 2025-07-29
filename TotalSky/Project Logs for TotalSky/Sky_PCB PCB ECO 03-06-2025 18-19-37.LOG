@@ -1,0 +1,16 @@
+Change Component Footprint: Designator=J1 Old Footprint=FP-PPTC021LGBN-RC-MFG New Footprint=FP-LPPB081NFFN-RC-MFG
+Change Component Comment : Designator=J1 Old Comment=PPTC021LGBN-RC New Comment=LPPB081NFFN-RC
+Change Managed Component Library Link : Designator=J1 Old VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 New VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 Old ItemGUID=50720B83-4E3B-49E1-965D-BDED0637A747 New ItemGUID=F4A32A5F-BAAF-4791-918D-BBE50C2A1A9F Old RevisionGUID=25858E0E-904A-4C01-8ECA-F901F2C207F3 New RevisionGUID=C46BAB4A-A6BF-4E8C-A074-CA61DEDDA315
+Change component parameters: Designator = "J1" ("J1"); Footprint = "FP-PPTC021LGBN-RC-MFG"; UniqueID = "\KBDPTMDE" ("\KBDPTMDE")
+Change component parameters (AddParameter): Name = "Connector Type"; Value = "Header"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Contact Plating"; Value = "Gold"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Contact Type"; Value = "Female Socket"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Lead Free"; Value = "Lead Free"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mount"; Value = "Through Hole"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Number of Positions"; Value = "8"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Number of Rows"; Value = "1"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package Quantity"; Value = "1"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Packaging"; Value = "Bulk"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Pitch"; Value = "0.05inch"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "RoHS Compliant"; Value = "Yes"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Termination"; Value = "Solder"; VariantName = "[No Variations]"

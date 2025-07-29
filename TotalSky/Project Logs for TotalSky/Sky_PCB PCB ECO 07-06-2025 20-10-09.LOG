@@ -1,0 +1,15 @@
+Added Pin To Net: NetName=NetJ1_1 Pin=BMP1-2
+Added Pin To Net: NetName=NetJ1_1 Pin=DHT1-1
+Added Pin To Net: NetName=NetJ1_1 Pin=GPS1-4
+Added Pin To Net: NetName=NetJ1_1 Pin=J5-2
+Added Pin To Net: NetName=NetJ1_1 Pin=MAX1-5
+Added Pin To Net: NetName=NetJ1_1 Pin=U1-1
+Added Pin To Net: NetName=NetJ1_1 Pin=U1-6
+Added Pin To Net: NetName=NetJ1_1 Pin=U1-12
+Added Pin To Net: NetName=NetJ1_1 Pin=U1-15
+Added Pin To Net: NetName=NetJ1_1 Pin=U1-16
+Added Pin To Net: NetName=NetJ1_1 Pin=U1-19
+Added Pin To Net: NetName=NetJ1_1 Pin=U1-24
+Added Pin To Net: NetName=NetJ1_1 Pin=U1-27
+Added Pin To Net: NetName=NetJ1_1 Pin=U1-30
+Change Net Name : Old Net Name=NetJ1_1 New Net Name=NetBMP1_2

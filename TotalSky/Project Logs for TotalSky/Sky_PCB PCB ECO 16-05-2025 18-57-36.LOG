@@ -1,0 +1,7 @@
+Added Component: Designator=J1(ZC362800#)
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/ZC362800%23/YKS/view-part/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "YKS"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "ZC362800#"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/ZC362800%23/YKS/view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"

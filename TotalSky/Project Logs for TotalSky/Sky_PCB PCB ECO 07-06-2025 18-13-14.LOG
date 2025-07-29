@@ -1,0 +1,6 @@
+Added Component: Designator=MAX1(MAX6675)
+Added Pin To Net: NetName=SO Pin=MAX1-1
+Added Pin To Net: NetName=CS Pin=MAX1-2
+Added Pin To Net: NetName=SCK Pin=MAX1-3
+Added Pin To Net: NetName=NetBMP1_1 Pin=MAX1-4
+Added Pin To Net: NetName=NetBMP1_2 Pin=MAX1-5

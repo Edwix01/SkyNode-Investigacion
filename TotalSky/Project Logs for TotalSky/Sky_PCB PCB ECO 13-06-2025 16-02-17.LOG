@@ -1,0 +1,8 @@
+Added Component: Designator=*1(Tornillo M3)
+Added Component: Designator=*2(Tornillo M3)
+Added Component: Designator=*3(Tornillo M3)
+Added Component: Designator=*(Tornillo M3)
+Add Pin To Net: Unknown Pin: Pin *1-21
+Add Pin To Net: Unknown Pin: Pin *2-21
+Add Pin To Net: Unknown Pin: Pin *3-21
+Add Pin To Net: Unknown Pin: Pin *-21

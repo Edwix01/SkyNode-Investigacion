@@ -1,0 +1,6 @@
+Added Component: Designator=GPS1(GPS)
+Added Pin To Net: NetName=VCC Pin=GPS1-1
+Added Pin To Net: NetName=GTX Pin=GPS1-2
+Added Pin To Net: NetName=GRX Pin=GPS1-3
+Added Pin To Net: NetName=GND Pin=GPS1-4
+Added Member To Class: ClassName=Sensores Member=Component GPS1 GPS6MV2

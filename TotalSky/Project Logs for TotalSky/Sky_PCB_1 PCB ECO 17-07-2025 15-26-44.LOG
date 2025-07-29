@@ -1,0 +1,2 @@
+Removed Pin From Net: NetName=Ventilador+ Pin=P4-3
+Added Pin To Net: NetName=GND Pin=P4-3

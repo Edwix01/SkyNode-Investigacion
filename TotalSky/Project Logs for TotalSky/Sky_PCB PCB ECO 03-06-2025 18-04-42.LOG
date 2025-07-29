@@ -1,0 +1,13 @@
+Removed Pin From Net: NetName=GYML8511 Pin=J1-3
+Removed Pin From Net: NetName=GUVA Pin=J2-1
+Removed Pin From Net: NetName=SCL Pin=J2-2
+Removed Pin From Net: NetName=SDA Pin=J2-3
+Change Component Designator: OldDesignator=U? NewDesignator=U1
+Add Pin To Net: Unknown Pin: Pin 1-4
+Add Pin To Net: Unknown Pin: Pin BH1-2
+Add Pin To Net: Unknown Pin: Pin BH1-3
+Add Pin To Net: Unknown Pin: Pin GUVA1-1
+Add Pin To Net: Unknown Pin: Pin OL1-1
+Add Pin To Net: Unknown Pin: Pin OL1-2
+Add Pin To Net: Unknown Pin: Pin OL1-3
+Add Pin To Net: Unknown Pin: Pin OL1-4

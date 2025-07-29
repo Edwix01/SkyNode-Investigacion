@@ -1,0 +1,3 @@
+Added Pin To Net: NetName=NetBMP1_2 Pin=DHT1-1
+Added Pin To Net: NetName=DHT Pin=DHT1-2
+Added Pin To Net: NetName=NetBMP1_1 Pin=DHT1-3

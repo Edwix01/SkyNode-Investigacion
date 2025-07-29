@@ -1,0 +1,3 @@
+Added Component: Designator=BMP1(BMP280)
+Added Component: Designator=GPS1(GPS)
+Added Component: Designator=MAX1(MAX6675)
