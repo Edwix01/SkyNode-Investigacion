@@ -1,0 +1,29 @@
+Added Component: Designator=8511?(GYML8511)
+Added Component: Designator=BH?(BH1750)
+Added Pin To Net: NetName=Net8511?_2 Pin=8511?-2
+Added Pin To Net: NetName=Net8511?_2 Pin=BH?-5
+Added Pin To Net: NetName=Net8511?_2 Pin=J1-1
+Added Pin To Net: NetName=Net8511?_2 Pin=J2-5
+Added Net: Name=Net8511?_2
+Added Pin To Net: NetName=Net8511?_3 Pin=8511?-3
+Added Pin To Net: NetName=Net8511?_3 Pin=BH?-4
+Added Pin To Net: NetName=Net8511?_3 Pin=J1-2
+Added Pin To Net: NetName=Net8511?_3 Pin=J2-4
+Added Net: Name=Net8511?_3
+Added Pin To Net: NetName=Net8511?_4 Pin=8511?-4
+Added Pin To Net: NetName=Net8511?_4 Pin=J1-3
+Added Net: Name=Net8511?_4
+Added Pin To Net: NetName=Net8511?_5 Pin=8511?-5
+Added Pin To Net: NetName=Net8511?_5 Pin=J1-4
+Added Net: Name=Net8511?_5
+Added Pin To Net: NetName=NetBH?_1 Pin=BH?-1
+Added Pin To Net: NetName=NetBH?_1 Pin=J2-1
+Added Net: Name=NetBH?_1
+Added Pin To Net: NetName=NetBH?_2 Pin=BH?-2
+Added Pin To Net: NetName=NetBH?_2 Pin=J2-2
+Added Net: Name=NetBH?_2
+Added Pin To Net: NetName=NetBH?_3 Pin=BH?-3
+Added Pin To Net: NetName=NetBH?_3 Pin=J2-3
+Added Net: Name=NetBH?_3
+Added Member To Class: ClassName=SkyTotalExternal Member=Component 8511? GYML8511
+Added Member To Class: ClassName=SkyTotalExternal Member=Component BH? BH1750

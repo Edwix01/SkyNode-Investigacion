@@ -1,0 +1,8 @@
+Removed Pin From Net: NetName=GND Pin=J1-1
+Added Pin To Net: NetName=GND Pin=BMP1-3
+Added Pin To Net: NetName=GND Pin=BMP1-6
+Added Pin To Net: NetName=VCC Pin=J1-1
+Added Pin To Net: NetName=NetBMP1_4 Pin=J1-3
+Added Pin To Net: NetName=NetBMP1_5 Pin=J1-4
+Added Member To Class: ClassName=SkyTotalExternal Member=Component BMP1 BMP280
+Added Member To Class: ClassName=SkyTotalExternal Member=Component J1 B4B-XH-A(LF)(SN)

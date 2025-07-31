@@ -1,0 +1,6 @@
+Change Component Designator: OldDesignator=BMP? NewDesignator=BMP1
+Change Component Designator: OldDesignator=P? NewDesignator=P1
+Change Net Name : Old Net Name=NetBMP?_3 New Net Name=NetBMP1_3
+Change Net Name : Old Net Name=NetBMP?_4 New Net Name=NetBMP1_4
+Change Net Name : Old Net Name=NetBMP?_5 New Net Name=NetBMP1_5
+Change Net Name : Old Net Name=NetBMP?_6 New Net Name=NetBMP1_6

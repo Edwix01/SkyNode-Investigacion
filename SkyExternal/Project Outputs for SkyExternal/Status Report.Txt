@@ -1,0 +1,12 @@
+Output: Gerber Files
+Type  : Gerber
+From  : Variant [[No Variations]] of Project [SkyExternal.PrjPcb]
+   Generated File[SkyTotalExternal.GBL]
+   Generated File[SkyTotalExternal.EXTREP]
+   Generated File[SkyTotalExternal.REP]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 15:44:53 On 29/07/2025

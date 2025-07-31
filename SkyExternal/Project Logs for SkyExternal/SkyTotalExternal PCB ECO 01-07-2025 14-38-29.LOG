@@ -1,0 +1,43 @@
+Removed Member From Class: ClassName=SkyTotalExternal Member=8511?
+Removed Member From Class: ClassName=SkyTotalExternal Member=J2
+Added Component: Designator=BMP?(BMP280)
+Added Component: Designator=P?(SMTC-TSW-104-08-X-S)
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "Manufacturer URL"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.samtec.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink2Description"; Value = "Datasheet"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink2URL"; Value = "http://www.samtec.com/documents/webfiles/pdf/TSW_TH.PDF"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink3Description"; Value = "Package Specification"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink3URL"; Value = "http://www.samtec.com/documents/webfiles/cpdf/TSW-XXX-XX-XXX-X-XX-XXX-MKT.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "DatasheetVersion"; Value = "F-214"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Samtec"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mounting Technology"; Value = "Through-hole"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Orientation"; Value = "Vertical"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageDescription"; Value = ".025[0.64] SQ. Post Terminal Strip Assembly"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "TSW-104-08-X-S"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageVersion"; Value = "DM, 8/1988"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PartNumber"; Value = "TSW-104-08-G-S"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Pitch"; Value = "2.54 mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RoHS"; Value = "True"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Temperature Range"; Value = "-55 to 125 degC"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=BMP?-2
+Added Pin To Net: NetName=GND Pin=J1-1
+Added Pin To Net: NetName=GND Pin=J1-2
+Added Net: Name=GND
+Added Pin To Net: NetName=NetBMP?_3 Pin=BMP?-3
+Added Pin To Net: NetName=NetBMP?_3 Pin=P?-4
+Added Net: Name=NetBMP?_3
+Added Pin To Net: NetName=NetBMP?_4 Pin=BMP?-4
+Added Pin To Net: NetName=NetBMP?_4 Pin=P?-3
+Added Net: Name=NetBMP?_4
+Added Pin To Net: NetName=NetBMP?_5 Pin=BMP?-5
+Added Pin To Net: NetName=NetBMP?_5 Pin=P?-1
+Added Net: Name=NetBMP?_5
+Added Pin To Net: NetName=NetBMP?_6 Pin=BMP?-6
+Added Pin To Net: NetName=NetBMP?_6 Pin=J1-4
+Added Net: Name=NetBMP?_6
+Added Pin To Net: NetName=VCC Pin=BMP?-1
+Added Net: Name=VCC
+Added Member To Class: ClassName=SkyTotalExternal Member=Component BMP? BMP280
+Added Member To Class: ClassName=SkyTotalExternal Member=Component P? UART
+Added Rule: Name=Schematic Supply Nets
+Added Rule: Name=Schematic Supply Nets_1
