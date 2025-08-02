@@ -27,8 +27,8 @@ El sistema incorpora los siguientes sensores y módulos:
 ## 📷 Diagrama de Conexiones
 
 A continuación, se muestra el esquema de conexiones del sistema:
+<img width="2228" height="1187" alt="Diagrama de Conexiones - Page 1" src="https://github.com/user-attachments/assets/738e1e31-0bef-4e46-bff1-269d3971b28c" />
 
-<img width="1266" height="713" alt="Diagrama de Conexiones (1)" src="https://github.com/user-attachments/assets/e87ad0dd-0223-425e-8dd2-ed0c1b47cf80" />
 
 ---
 
@@ -41,4 +41,5 @@ A continuación, se muestra el esquema de conexiones del sistema:
 ---
 
 ## 📁 Estructura del Proyecto
+
 
