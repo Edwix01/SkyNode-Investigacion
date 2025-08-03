@@ -40,7 +40,11 @@ A continuación, se muestra el esquema de conexiones del sistema:
 
 ---
 
-## 📁 Estructura del Proyecto
+## Esquematico PCB
+
+<img width="927" height="627" alt="image" src="https://github.com/user-attachments/assets/0ee7cddf-247f-4813-bdc9-9d702e7b3b93" />
+
+<img width="993" height="670" alt="image" src="https://github.com/user-attachments/assets/32bd24b7-a912-4885-89a7-fbca74edba22" />
 
 
 
