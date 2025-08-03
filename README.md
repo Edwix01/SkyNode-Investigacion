@@ -8,8 +8,8 @@ El sistema incorpora los siguientes sensores y módulos:
 
 | Sensor / Módulo                    | Descripción                                  | Etiqueta     | Pin GPIO       | Protocolo    |
 |----------------------------------|----------------------------------------------|--------------|----------------|--------------|
-| Sensor UV 1                      | Radiación ultravioleta                       | `S_UV1`      | GPIO2          | Analógico    |
-| Sensor UV 2                      | Radiación ultravioleta                       | `S_UV2`      | GPIO3          | Analógico    |
+| Sensor UV 1                      | Radiación ultravioleta                       | `S_UV1`      | GPIO3          | Analógico    |
+| Sensor UV 2                      | Radiación ultravioleta                       | `S_UV2`      | GPIO2          | Analógico    |
 | Sensor de temperatura y humedad | Sensor digital DHT11                         | `DHT11`      | GPIO0          | Digital      |
 | GPS                              | Módulo de posicionamiento satelital          | `RX_GPS`, `TX_GPS` | GPIO5 (RX), GPIO4 (TX) | UART         |
 | Sensor de luz visible           | Sensor BH1750                                |              | I2C (`SDA`, `SCL`) | I2C      |
@@ -41,5 +41,6 @@ A continuación, se muestra el esquema de conexiones del sistema:
 ---
 
 ## 📁 Estructura del Proyecto
+
 
 
