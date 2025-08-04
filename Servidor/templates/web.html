@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SensorView - Monitorización de Sensores</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --bg-color: #f5f7fa;
+            --text-color: #34495e;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .logo-text {
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 0.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-button.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .nav-button:not(.active) {
+            background-color: transparent;
+            color: var(--text-color);
+        }
+
+        .nav-button:not(.active):hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        .content-section {
+            flex: 1;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-title {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .card-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .sky-camera {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .sky-camera-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            background-color: #e0e0e0;
+        }
+
+        .time-selector {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .time-selector button {
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--primary-color);
+            background-color: transparent;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .time-selector button.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .chart-container {
+            height: 300px;
+            background-color: rgba(52, 152, 219, 0.1);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+        }
+
+        .queries-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .query-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        label {
+            font-weight: 500;
+        }
+
+        input, select {
+            padding: 0.75rem;
+            border-radius: var(--border-radius);
+            border: 1px solid #e0e0e0;
+            font-size: 1rem;
+        }
+
+        button {
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            border: none;
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .results-container {
+            background-color: rgba(52, 152, 219, 0.1);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            min-height: 200px;
+        }
+
+        .config-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .config-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .config-section {
+            background-color: rgba(52, 152, 219, 0.05);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .config-section-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            padding: 1rem;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-buttons {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .nav-button {
+                flex: 1;
+                text-align: center;
+                justify-content: center;
+                padding: 0.75rem 0.5rem;
+            }
+            
+            .form-row {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <span class="logo-icon">📊</span>
+            <span class="logo-text">SensorView</span>
+        </div>
+        <div class="status-indicator">
+            Conectado
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="nav-container">
+            <div class="nav-buttons">
+                <button id="dashboard-btn" class="nav-button active" onclick="showSection('dashboard')">
+                    <span>📊</span> Dashboard
+                </button>
+                <button id="queries-btn" class="nav-button" onclick="showSection('queries')">
+                    <span>🔍</span> Consultas
+                </button>
+                <button id="config-btn" class="nav-button" onclick="showSection('config')">
+                    <span>⚙️</span> Configuración
+                </button>
+            </div>
+        </div>
+
+        <section id="dashboard" class="content-section active">
+            <div class="dashboard-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Temperatura</span>
+                        <span>🌡️</span>
+                    </div>
+                    <div class="card-value">23.5°C</div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Humedad</span>
+                        <span>💧</span>
+                    </div>
+                    <div class="card-value">65%</div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Presión</span>
+                        <span>🔄</span>
+                    </div>
+                    <div class="card-value">1013 hPa</div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Luz</span>
+                        <span>☀️</span>
+                    </div>
+                    <div class="card-value">850 lux</div>
+                </div>
+            </div>
+
+            <div class="sky-camera">
+                <h2>Cámara del Cielo</h2>
+                <div class="sky-camera-img">
+                    <img src="/api/placeholder/800/400" alt="Vista del cielo" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div>
+                    <p>Última captura: Hoy, 15:30</p>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 1.5rem;">
+                <h2>Histórico de Sensores</h2>
+                <div class="time-selector">
+                    <button class="active">Hoy</button>
+                    <button>Semana</button>
+                    <button>Mes</button>
+                </div>
+                <div class="chart-container">
+                    Aquí se mostrarían los gráficos históricos
+                </div>
+            </div>
+        </section>
+
+        <section id="queries" class="content-section">
+            <div class="queries-container">
+                <h2>Consulta de Datos</h2>
+                <form class="query-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="sensor-type">Tipo de Sensor</label>
+                            <select id="sensor-type">
+                                <option value="temperatura">Temperatura</option>
+                                <option value="humedad">Humedad</option>
+                                <option value="presion">Presión</option>
+                                <option value="luz">Luz</option>
+                                <option value="todos">Todos los sensores</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="date-range">Rango de Fechas</label>
+                            <select id="date-range">
+                                <option value="hoy">Hoy</option>
+                                <option value="ayer">Ayer</option>
+                                <option value="semana">Última semana</option>
+                                <option value="mes">Último mes</option>
+                                <option value="personalizado">Personalizado</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row" id="custom-date" style="display: none;">
+                        <div class="form-group">
+                            <label for="start-date">Fecha Inicio</label>
+                            <input type="date" id="start-date">
+                        </div>
+                        <div class="form-group">
+                            <label for="end-date">Fecha Fin</label>
+                            <input type="date" id="end-date">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="aggregation">Agrupación</label>
+                        <select id="aggregation">
+                            <option value="ninguna">Sin agrupación</option>
+                            <option value="hora">Por hora</option>
+                            <option value="dia">Por día</option>
+                            <option value="semana">Por semana</option>
+                        </select>
+                    </div>
+                    
+                    <button type="button">Consultar Datos</button>
+                </form>
+                
+                <div class="results-container">
+                    <p>Los resultados de la consulta aparecerán aquí</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="config" class="content-section">
+            <div class="config-container">
+                <h2>Configuración del Sistema</h2>
+                
+                <form class="config-form">
+                    <div class="config-section">
+                        <div class="config-section-title">Configuración de Captura</div>
+                        <div class="form-group">
+                            <label for="capture-interval">Intervalo de Captura (minutos)</label>
+                            <input type="number" id="capture-interval" value="30" min="1" max="1440">
+                        </div>
+                        <div class="form-group">
+                            <label for="resolution">Resolución de Imagen</label>
+                            <select id="resolution">
+                                <option value="low">Baja (640x480)</option>
+                                <option value="medium" selected>Media (1280x720)</option>
+                                <option value="high">Alta (1920x1080)</option>
+                                <option value="ultra">Ultra HD (3840x2160)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="nightmode">Modo Nocturno</label>
+                            <select id="nightmode">
+                                <option value="auto">Automático</option>
+                                <option value="on">Siempre activado</option>
+                                <option value="off">Siempre desactivado</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="config-section">
+                        <div class="config-section-title">Configuración de Sensores</div>
+                        <div class="form-group">
+                            <label for="sensor-interval">Intervalo de Lectura (segundos)</label>
+                            <input type="number" id="sensor-interval" value="10" min="1" max="3600">
+                        </div>
+                        <div class="form-group">
+                            <label for="temp-calibration">Calibración de Temperatura (°C)</label>
+                            <input type="number" id="temp-calibration" value="0" step="0.1" min="-10" max="10">
+                        </div>
+                        <div class="form-group">
+                            <label for="humidity-calibration">Calibración de Humedad (%)</label>
+                            <input type="number" id="humidity-calibration" value="0" step="1" min="-20" max="20">
+                        </div>
+                    </div>
+                    
+                    <div class="config-section">
+                        <div class="config-section-title">Almacenamiento</div>
+                        <div class="form-group">
+                            <label for="storage-limit">Límite de Almacenamiento (días)</label>
+                            <input type="number" id="storage-limit" value="30" min="1" max="365">
+                        </div>
+                        <div class="form-group">
+                            <label for="backup-frequency">Frecuencia de Respaldo</label>
+                            <select id="backup-frequency">
+                                <option value="daily">Diario</option>
+                                <option value="weekly">Semanal</option>
+                                <option value="monthly">Mensual</option>
+                                <option value="never">Nunca</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 1rem;">
+                        <button type="button" style="flex: 1;">Guardar Configuración</button>
+                        <button type="button" style="background-color: #e74c3c; flex: 1;">Reiniciar</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        Sistema de Monitorización de Sensores ESP32 & Raspberry Pi | v1.0
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show the selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update active button
+            document.querySelectorAll('.nav-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            document.getElementById(sectionId + '-btn').classList.add('active');
+        }
+        
+        // Add event listener for date range selector
+        document.getElementById('date-range')?.addEventListener('change', function() {
+            const customDateDiv = document.getElementById('custom-date');
+            if (this.value === 'personalizado') {
+                customDateDiv.style.display = 'flex';
+            } else {
+                customDateDiv.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

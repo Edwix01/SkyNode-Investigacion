@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Consulta de Sensores</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <style>
+    /* --- Base y Fondo "Aurora" (Sin cambios) --- */
+    body {
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      margin: 0;
+      padding: 3rem 2rem;
+      background-color: #0d1117;
+      background-image: 
+        radial-gradient(at 80% 20%, hsla(212, 85%, 55%, 0.3) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, hsla(289, 75%, 50%, 0.3) 0px, transparent 50%),
+        radial-gradient(at 0% 0%, hsla(343, 85%, 55%, 0.3) 0px, transparent 50%);
+      background-attachment: fixed;
+    }
+
+    /* --- Contenedor Principal --- */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    /* --- Título Principal --- */
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 2rem;
+      letter-spacing: -1px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    /* --- Paneles de Vidrio para Contenido --- */
+    .glass-panel {
+      background: rgba(18, 25, 40, 0.4);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    /* --- Estilos para el Formulario --- */
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .form-label, .form-check-label {
+      color: #cdd5e0;
+      font-size: 0.9rem;
+    }
+    .form-control, .form-select {
+      background-color: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      border-radius: 8px;
+    }
+    .form-control:focus, .form-select:focus {
+      background-color: rgba(0, 0, 0, 0.3);
+      border-color: rgba(100, 180, 255, 0.7);
+      box-shadow: none;
+      color: #fff;
+    }
+    .form-control::placeholder { color: #8a96a8; }
+    input[type="date"]::-webkit-calendar-picker-indicator,
+    input[type="time"]::-webkit-calendar-picker-indicator {
+      filter: invert(1);
+    }
+    
+    /* Checkboxes personalizados */
+    .form-check-input {
+      background-color: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+    .form-check-input:checked {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+    .form-check-input:focus {
+      box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+    }
+
+    /* --- [NUEVO] Grid para los Checkboxes --- */
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.75rem 1.5rem; /* Espacio vertical y horizontal */
+    }
+/* --- [NUEVO] Cuadrícula para la sección de Filtros --- */
+.filter-grid {
+  display: grid;
+  grid-template-columns: auto 1fr; /* 2 columnas en móvil: Etiqueta y Campo */
+  gap: 1.25rem 1rem; /* Espacio vertical y horizontal */
+  align-items: center; /* Alinea verticalmente etiqueta y campo */
+}
+
+/* En pantallas de 992px o más, pasamos a 4 columnas */
+@media (min-width: 992px) {
+  .filter-grid {
+    grid-template-columns: auto 1fr auto 1fr; /* 4 columnas: Etiqueta, Campo, Etiqueta, Campo */
+  }
+}
+
+/* --- [MODIFICADO] Estilo para las etiquetas dentro de la cuadrícula --- */
+.filter-grid .form-label {
+  margin-bottom: 0; /* Quitamos el margen que ya no es necesario */
+  justify-self: end; /* Alineamos el texto de la etiqueta a la derecha */
+  color: #aeb8c5; /* Un tono ligeramente más suave */
+}
+
+/* --- [NUEVO] Estilo para el checkbox "Sin Límite" para que se alinee correctamente */
+.filter-grid .form-check {
+  /* Hacemos que ocupe la columna del campo, no la de la etiqueta */
+  grid-column: 2 / 3;
+}
+/* En layout de 4 columnas, lo ajustamos si es necesario */
+@media (min-width: 992px) {
+  .filter-grid .form-check {
+    /* Aquí se alinea bajo la 3ra columna de campos (Cantidad) */
+    grid-column: 4 / 5;
+  }
+}
+
+
+/* --- [MODIFICADO] Checkboxes personalizados (pequeño ajuste de margen) --- */
+.form-check-input {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  margin-right: 0.5rem; /* Espacio entre el check y la etiqueta */
+}
+    /* --- Estilos para la Tabla de Resultados (sin cambios) */
+    .scrollable-table { max-height: 450px; overflow-y: auto; border-radius: 8px; }
+    .table-custom { width: 100%; border-collapse: collapse; color: #cdd5e0; }
+    .table-custom th, .table-custom td { padding: 1rem; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.15); vertical-align: middle; }
+    .table-custom thead th { background-color: rgba(0, 0, 0, 0.2); font-weight: 600; color: #fff; }
+    .table-custom tbody tr:nth-child(even) { background-color: rgba(255, 255, 255, 0.03); }
+    .table-custom tbody tr:hover { background-color: rgba(255, 255, 255, 0.08); }
+    .table-custom a { color: #80bfff; text-decoration: none; }
+    .table-custom a:hover { text-decoration: underline; }
+    .scrollable-table::-webkit-scrollbar { width: 8px; }
+    .scrollable-table::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); border-radius: 4px;}
+    .scrollable-table::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.3); border-radius: 4px; }
+    .scrollable-table::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.5); }
+
+    /* --- Estilos para los Botones --- */
+    .btn { padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; transition: all 0.2s ease; border: none; }
+    .btn-primary-custom { background: linear-gradient(45deg, #007bff, #0056b3); color: #fff; }
+    .btn-primary-custom:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3); }
+    .btn-secondary-custom { background: rgba(255, 255, 255, 0.1); color: #e0e0e0; border: 1px solid rgba(255, 255, 255, 0.2); }
+    .btn-secondary-custom:hover { background: rgba(255, 255, 255, 0.2); color: #fff; }
+
+    /* --- [NUEVO] Contenedor de acciones del formulario --- */
+    .form-actions {
+      display: flex;
+      justify-content: space-between; /* Clave para alinear los botones */
+      align-items: center;
+      flex-wrap: wrap; /* Para responsividad en pantallas pequeñas */
+      gap: 1rem;
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .action-buttons { display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap; }
+    .back-button-container { text-align: center; margin-top: 1rem; }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1><i class="bi bi-filter-circle"></i> Consulta Personalizada</h1>
+
+    <div class="glass-panel">
+      <form method="get" action="/consulta">
+        
+<div class="checkbox-grid mb-4">
+          <div class="form-check">
+            <input type="checkbox" name="sensores" value="ml8511" class="form-check-input" {% if 'ml8511' in sensores %}checked{% endif %}>
+            <label class="form-check-label">ML8511</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" name="sensores" value="visible" class="form-check-input" {% if 'visible' in sensores %}checked{% endif %}>
+            <label class="form-check-label">Luz Visible</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" name="sensores" value="humedad" class="form-check-input" {% if 'humedad' in sensores %}checked{% endif %}>
+            <label class="form-check-label">Humedad</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" name="sensores" value="temp_dht" class="form-check-input" {% if 'temp_dht' in sensores %}checked{% endif %}>
+            <label class="form-check-label">Temp DHT</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" name="sensores" value="temp_bmp" class="form-check-input" {% if 'temp_bmp' in sensores %}checked{% endif %}>
+            <label class="form-check-label">Temp BMP</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" name="sensores" value="presion_bmp" class="form-check-input" {% if 'presion_bmp' in sensores %}checked{% endif %}>
+            <label class="form-check-label">Presión BMP</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" name="sensores" value="lat" class="form-check-input" {% if 'lat' in sensores %}checked{% endif %}>
+            <label class="form-check-label">Latitud</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" name="sensores" value="lng" class="form-check-input" {% if 'lng' in sensores %}checked{% endif %}>
+            <label class="form-check-label">Longitud</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" name="sensores" value="satelites" class="form-check-input" {% if 'satelites' in sensores %}checked{% endif %}>
+            <label class="form-check-label">Satélites</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" name="sensores" value="altitud" class="form-check-input" {% if 'altitud' in sensores %}checked{% endif %}>
+            <label class="form-check-label">Altitud</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" name="sensores" value="temp_max_c" class="form-check-input" {% if 'temp_max_c' in sensores %}checked{% endif %}>
+            <label class="form-check-label">Temp Max °C</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" name="sensores" value="temp_max_f" class="form-check-input" {% if 'temp_max_f' in sensores %}checked{% endif %}>
+            <label class="form-check-label">Temp Max °F</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" name="sensores" value="ml8511_2" class="form-check-input" {% if 'ml8511_2' in sensores %}checked{% endif %}>
+            <label class="form-check-label">ML8511 #2</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" name="sensores" value="visible_2" class="form-check-input" {% if 'visible_2' in sensores %}checked{% endif %}>
+            <label class="form-check-label">Luz Visible #2</label>
+          </div>
+        </div>
+
+        <div class="section-title">Filtros de Búsqueda</div>
+    
+    <div class="filter-grid">
+      <label class="form-label">Desde:</label>
+      <input type="date" name="desde" class="form-control" value="{{ desde }}">
+      
+      <label class="form-label">Hasta:</label>
+      <input type="date" name="hasta" class="form-control" value="{{ hasta }}">
+
+      <label class="form-label">Hora Inicial:</label>
+      <input type="time" name="hora_inicio" class="form-control" value="{{ hora_inicio }}">
+
+      <label class="form-label">Hora Final:</label>
+      <input type="time" name="hora_final" class="form-control" value="{{ hora_final }}">
+      
+      <label class="form-label">Cantidad:</label>
+      <input type="number" name="cantidad" id="cantidadInput" class="form-control" placeholder="Todos" value="{{ cantidad }}">
+      
+      <span></span> <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="sin_limite" id="sinLimiteCheckbox" value="1" {% if sin_limite %}checked{% endif %}>
+        <label class="form-check-label" for="sinLimiteCheckbox">Sin límite de cantidad</label>
+      </div>
+
+    </div>
+    
+    <div class="form-actions">
+      <a href="/consulta" class="btn btn-secondary-custom">
+        <i class="bi bi-arrow-counterclockwise"></i> Restablecer Filtros
+      </a>
+      <button class="btn btn-primary-custom" type="submit">
+        <i class="bi bi-search"></i> Consultar Registros
+      </button>
+    </div>
+      </form>
+    </div>
+
+    {% if resultados %}
+    <div class="glass-panel">
+      <div class="section-title">Resultados de la Búsqueda</div>
+      <div class="scrollable-table">
+        <table class="table-custom">
+          <thead>
+            <tr>
+              <th>Timestamp</th>
+              {% for sensor in sensores %}
+                <th>{{ sensor }}</th>
+              {% endfor %}
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for registro in resultados %}
+            <tr>
+              <td>{{ registro.timestamp }}</td>
+              {% for sensor in sensores %}
+                <td>{{ registro[sensor] }}</td>
+              {% endfor %}
+              <td>
+                <a href="{{ registro.imagen }}" target="_blank" class="btn btn-secondary-custom btn-sm py-1 px-2">
+                  <i class="bi bi-eye"></i> Ver
+                </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="action-buttons">
+        <a href="/exportar?{{ export_query }}" class="btn btn-secondary-custom">
+          <i class="bi bi-filetype-csv"></i> Exportar CSV
+        </a>
+        <a href="/descargar_imagenes?{{ export_query }}" class="btn btn-secondary-custom">
+          <i class="bi bi-file-earmark-zip"></i> Descargar Imágenes
+        </a>
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="back-button-container">
+      <a href="/" class="btn btn-secondary-custom">
+        <i class="bi bi-house-door"></i> Volver al inicio
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const sinLimiteCheckbox = document.getElementById('sinLimiteCheckbox');
+    const cantidadInput = document.getElementById('cantidadInput');
+    function toggleCantidad() {
+      if(cantidadInput) {
+        cantidadInput.disabled = sinLimiteCheckbox.checked;
+        if(sinLimiteCheckbox.checked) {
+          cantidadInput.value = '';
+        }
+      }
+    }
+    sinLimiteCheckbox.addEventListener('change', toggleCantidad);
+    window.addEventListener('load', toggleCantidad);
+  </script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel de Monitoreo v2</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <style>
+    /* --- Animación de entrada --- */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* --- Base y Fondo "Aurora" --- */
+    body {
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 2rem;
+      
+      /* El fondo mágico: Múltiples gradientes radiales para crear el efecto aurora */
+      background-color: #0d1117; /* Color base oscuro */
+      background-image: 
+        radial-gradient(at 80% 20%, hsla(212, 85%, 55%, 0.3) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, hsla(289, 75%, 50%, 0.3) 0px, transparent 50%),
+        radial-gradient(at 0% 0%, hsla(343, 85%, 55%, 0.3) 0px, transparent 50%);
+      background-attachment: fixed; /* Mantiene el fondo estático al hacer scroll */
+    }
+
+    /* --- Contenedor Principal --- */
+    .container {
+      text-align: center;
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    /* --- Título Principal --- */
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #ffffff; /* Texto blanco para contrastar con el fondo oscuro */
+      margin-bottom: 4rem;
+      letter-spacing: -1.5px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Sombra para legibilidad */
+    }
+    
+    /* --- Grid de Tarjetas --- */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2.5rem;
+    }
+
+    /* --- Tarjetas con Efecto "Glassmorphism" --- */
+    .card-link {
+      /* Vidrio Esmerilado */
+      background: rgba(255, 255, 255, 0.1); /* Fondo translúcido */
+      backdrop-filter: blur(12px); /* El efecto de desenfoque clave */
+      -webkit-backdrop-filter: blur(12px); /* Soporte para Safari */
+      
+      /* Estructura y Estilo */
+      border: 1px solid rgba(255, 255, 255, 0.2); /* Borde de vidrio */
+      border-radius: 16px; /* Bordes más suaves */
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15); /* Sombra suave para profundidad */
+      padding: 2.5rem 2rem;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+      transition: all 0.3s ease;
+
+      /* Aplicación de la animación */
+      opacity: 0; /* Empieza invisible */
+      animation: fadeInUp 0.5s ease-out forwards;
+    }
+
+    /* --- Animación Escalonada --- */
+    .card-link:nth-child(2) { animation-delay: 0.2s; }
+    .card-link:nth-child(3) { animation-delay: 0.4s; }
+
+    /* --- Efecto Hover Mejorado --- */
+    .card-link:hover {
+      transform: translateY(-8px);
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 12px 32px 0 rgba(0, 0, 0, 0.2);
+    }
+    
+    /* --- Estilo de Iconos y Texto --- */
+    .card-link .icon {
+      font-size: 2.8rem;
+      color: #ffffff; /* Iconos blancos para máximo contraste */
+      text-shadow: 0 0 10px rgba(255,255,255,0.2); /* Un ligero brillo */
+    }
+
+    .card-link .card-text {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #e0e0e0; /* Un blanco no tan puro para el texto */
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Sistema de Monitoreo</h1>
+
+    <div class="card-grid">
+      <a href="/dashboard" class="card-link">
+        <i class="bi bi-thermometer-half icon"></i>
+        <span class="card-text">Lecturas de Sensores</span>
+      </a>
+
+      <a href="/consulta" class="card-link">
+        <i class="bi bi-file-earmark-spreadsheet icon"></i>
+        <span class="card-text">Consultas y Reportes</span>
+      </a>
+
+      <a href="/configuracion" class="card-link">
+        <i class="bi bi-gear-wide-connected icon"></i>
+        <span class="card-text">Configuración</span>
+      </a>
+    </div>
+  </div>
+
+</body>
+</html>

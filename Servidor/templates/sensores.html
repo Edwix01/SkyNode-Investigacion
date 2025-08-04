@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard de Sensores</title>
+  
+  <!-- Google Fonts: Inter para la tipografía moderna -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap CSS para la estructura responsiva y componentes -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons para los iconos -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet">
+  
+  <style>
+    /* --- Animación de entrada general --- */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* --- Base y Fondo "Aurora" --- */
+    body {
+      font-family: 'Inter', sans-serif; /* Fuente moderna */
+      display: flex;
+      justify-content: center;
+      align-items: start; /* Alinea el contenido al inicio verticalmente */
+      min-height: 100vh;
+      margin: 0;
+      padding: 2rem;
+      
+      /* El fondo mágico: Múltiples gradientes radiales para crear el efecto aurora */
+      background-color: #0d1117; /* Color base oscuro */
+      background-image: 
+        radial-gradient(at 80% 20%, hsla(212, 85%, 55%, 0.3) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, hsla(289, 75%, 50%, 0.3) 0px, transparent 50%),
+        radial-gradient(at 0% 0%, hsla(343, 85%, 55%, 0.3) 0px, transparent 50%);
+      background-attachment: fixed; /* Mantiene el fondo estático al hacer scroll */
+      color: #e0e0e0; /* Color de texto general claro para el tema oscuro */
+    }
+
+    /* --- Contenedor Principal (ajustado para el dashboard) --- */
+    .container-fluid {
+      width: 100%;
+      max-width: 1200px; /* Un poco más ancho para el dashboard */
+      padding: 0 2rem;
+      animation: fadeInUp 0.8s ease-out forwards; /* Animación para el contenedor principal */
+    }
+
+    /* --- Títulos Principales --- */
+    h1, h2 {
+      font-size: 3rem; /* Tamaño de fuente grande para títulos */
+      font-weight: 700; /* Negrita */
+      color: #ffffff; /* Texto blanco para contrastar con el fondo oscuro */
+      margin-bottom: 3.5rem; /* Margen inferior para separar secciones */
+      letter-spacing: -1.5px; /* Espaciado de letras ajustado */
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Sombra para legibilidad */
+    }
+    h2 { /* Ajuste para subtítulos si se usan */
+      font-size: 2.5rem;
+    }
+
+    /* --- Tarjetas de Sensor con Efecto "Glassmorphism" --- */
+    .sensor-card {
+      /* Efecto Vidrio Esmerilado */
+      background: rgba(255, 255, 255, 0.08); /* Fondo translúcido */
+      backdrop-filter: blur(10px); /* El efecto de desenfoque clave */
+      -webkit-backdrop-filter: blur(10px); /* Soporte para Safari */
+      
+      /* Estructura y Estilo */
+      border: 1px solid rgba(255, 255, 255, 0.15); /* Borde de vidrio sutil */
+      border-radius: 16px; /* Bordes suaves */
+      box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.1); /* Sombra suave para profundidad */
+      transition: all 0.3s ease; /* Transición suave para interactividad */
+      height: 100%; /* Asegura que las tarjetas tengan la misma altura en la fila */
+      padding: 1.5rem; /* Ajuste del padding para el contenido */
+    }
+
+    /* --- Animación de Hover para Tarjetas --- */
+    .sensor-card:hover {
+      transform: translateY(-8px); /* Eleva la tarjeta */
+      background: rgba(255, 255, 255, 0.15); /* Ligeramente más opaco al pasar el ratón */
+      border-color: rgba(255, 255, 255, 0.3); /* Borde más visible */
+      box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+    }
+
+    /* --- Iconos de Sensores --- */
+    .sensor-icon {
+      font-size: 2.5rem; /* Tamaño de icono ajustado */
+      color: #7bd9f4; /* Color azul claro brillante para iconos */
+      margin-bottom: 1rem;
+      text-shadow: 0 0 8px rgba(123, 217, 244, 0.5); /* Pequeño brillo */
+    }
+
+    /* --- Títulos de Tarjeta (nombre del sensor) --- */
+    .card-title {
+      font-size: 1.1rem; /* Tamaño de fuente ligeramente más grande */
+      color: #ffffff; /* Blanco puro para el título del sensor */
+      font-weight: 500; /* Semi-negrita */
+      margin-bottom: 0.5rem;
+    }
+
+    /* --- Valores de Sensores --- */
+    .sensor-value {
+      font-size: 2.2rem; /* Tamaño de fuente grande para el valor */
+      font-weight: 700; /* Más negrita para el valor principal */
+      color: #a7f3d0; /* Color verde claro vibrante para valores */
+    }
+    .sensor-value.small { /* Para valores con más de una línea, como GPS */
+        font-size: 1.1rem;
+        font-weight: 500;
+        line-height: 1.4;
+        color: #e0e0e0;
+    }
+
+    /* --- Indicadores de Validez (Valid/Invalid) --- */
+    .bg-valid {
+      /* Usa un tono de verde que contraste con el fondo oscuro y glassmorphism */
+      border-left: 5px solid hsla(150, 80%, 60%, 0.8); /* Verde vibrante con opacidad */
+    }
+
+    .bg-invalid {
+      /* Usa un tono de rojo que contraste con el fondo oscuro y glassmorphism */
+      border-left: 5px solid hsla(0, 80%, 60%, 0.8); /* Rojo vibrante con opacidad */
+    }
+
+    /* --- Contenedor del Gráfico con Glassmorphism --- */
+    .chart-container-glass {
+      background: rgba(255, 255, 255, 0.08); /* Fondo translúcido */
+      backdrop-filter: blur(10px); /* Efecto de desenfoque */
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.15); /* Borde de vidrio */
+      border-radius: 16px; /* Bordes suaves */
+      box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.1); /* Sombra */
+      padding: 2.5rem; /* Relleno */
+    }
+
+    /* --- Campos de formulario (Selects y Datetime-local) --- */
+    select.form-select,
+    input[type="datetime-local"].form-control {
+      background-color: rgba(255, 255, 255, 0.05); /* Fondo translúcido */
+      border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil */
+      color: #ffffff; /* Texto blanco */
+      border-radius: 8px; /* Bordes ligeramente redondeados */
+      padding: 0.75rem 1rem;
+      transition: all 0.3s ease;
+      font-weight: 400; /* Peso de fuente normal */
+    }
+
+    select.form-select:focus,
+    input[type="datetime-local"].form-control:focus {
+      background-color: rgba(255, 255, 255, 0.1); /* Ligeramente más opaco al enfocar */
+      border-color: rgba(255, 255, 255, 0.3); /* Borde más visible al enfocar */
+      box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); /* Sombra de enfoque de Bootstrap con menos opacidad */
+      color: #ffffff;
+    }
+
+    /* Estilo para las opciones del select */
+    select.form-select option {
+      background-color: #0d1117; /* Fondo oscuro para opciones */
+      color: #ffffff; /* Texto blanco para opciones */
+    }
+
+    /* --- Botón Volver al Inicio --- */
+    .btn-outline-secondary {
+      border-color: rgba(255, 255, 255, 0.3); /* Borde más sutil para el botón outline */
+      color: #e0e0e0; /* Texto claro */
+      padding: 0.8rem 2.5rem;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      text-decoration: none; /* Asegura que no tenga subrayado */
+    }
+
+    .btn-outline-secondary:hover {
+      background-color: rgba(255, 255, 255, 0.1); /* Fondo translúcido al hover */
+      color: #ffffff; /* Texto blanco puro al hover */
+      border-color: rgba(255, 255, 255, 0.5);
+      transform: translateY(-3px); /* Efecto de elevación */
+    }
+
+    a.btn i {
+      margin-right: 0.5rem;
+    }
+
+    /* --- Línea horizontal --- */
+    hr {
+      border-top: 1px solid rgba(255, 255, 255, 0.15); /* Línea más sutil y en tono de vidrio */
+      margin-top: 4rem;
+      margin-bottom: 4rem;
+    }
+
+    /* Ajustes para el contenedor de los select y inputs */
+    .chart-controls {
+        margin-bottom: 3rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+        gap: 1rem; /* Espacio entre elementos */
+    }
+    .chart-controls .form-label {
+        margin-bottom: 0; /* Elimina el margen inferior predeterminado de la etiqueta */
+        color: #ffffff; /* Color de etiqueta blanco */
+        font-weight: 500;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="container-fluid text-center">
+  <h1><i class="bi bi-bar-chart-line-fill"></i> Dashboard de Sensores</h1>
+
+  <div class="row g-4 mb-5">
+    <!-- Las tarjetas de sensores se renderizarán aquí -->
+    <!-- ML8511 -->
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card sensor-card {{ 'bg-valid' if datos.ml8511 and datos.ml8511 != 0 else 'bg-invalid' }}">
+        <div class="card-body text-center">
+          <div class="sensor-icon"><i class="bi bi-sun-fill"></i></div>
+          <h5 class="card-title">ML8511</h5>
+          <div class="sensor-value">{{ datos.ml8511 }}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Luz Visible -->
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card sensor-card {{ 'bg-valid' if datos.visible and datos.visible != 0 else 'bg-invalid' }}">
+        <div class="card-body text-center">
+          <div class="sensor-icon"><i class="bi bi-lightbulb-fill"></i></div>
+          <h5 class="card-title">Luz Visible</h5>
+          <div class="sensor-value">{{ datos.visible }}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ML8511 #2 -->
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card sensor-card {{ 'bg-valid' if datos.ml8511_2 and datos.ml8511_2 != 0 else 'bg-invalid' }}">
+        <div class="card-body text-center">
+          <div class="sensor-icon"><i class="bi bi-sun"></i></div>
+          <h5 class="card-title">ML8511 #2</h5>
+          <div class="sensor-value">{{ datos.ml8511_2 }}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Luz Visible #2 -->
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card sensor-card {{ 'bg-valid' if datos.visible_2 and datos.visible_2 != 0 else 'bg-invalid' }}">
+        <div class="card-body text-center">
+          <div class="sensor-icon"><i class="bi bi-lightbulb"></i></div>
+          <h5 class="card-title">Luz Visible #2</h5>
+          <div class="sensor-value">{{ datos.visible_2 }}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Humedad -->
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card sensor-card {{ 'bg-valid' if datos.humedad and datos.humedad != 0 else 'bg-invalid' }}">
+        <div class="card-body text-center">
+          <div class="sensor-icon"><i class="bi bi-moisture"></i></div>
+          <h5 class="card-title">Humedad</h5>
+          <div class="sensor-value">{{ datos.humedad }}%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Temp DHT -->
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card sensor-card {{ 'bg-valid' if datos.temp_dht and datos.temp_dht != 0 else 'bg-invalid' }}">
+        <div class="card-body text-center">
+          <div class="sensor-icon"><i class="bi bi-thermometer-half"></i></div>
+          <h5 class="card-title">Temp. DHT11</h5>
+          <div class="sensor-value">{{ datos.temp_dht }} °C</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Temp BMP -->
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card sensor-card {{ 'bg-valid' if datos.temp_bmp and datos.temp_bmp != 0 else 'bg-invalid' }}">
+        <div class="card-body text-center">
+          <div class="sensor-icon"><i class="bi bi-thermometer"></i></div>
+          <h5 class="card-title">Temp. BMP280</h5>
+          <div class="sensor-value">{{ datos.temp_bmp }} °C</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Presión BMP -->
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card sensor-card {{ 'bg-valid' if datos.presion_bmp and datos.presion_bmp != 0 else 'bg-invalid' }}">
+        <div class="card-body text-center">
+          <div class="sensor-icon"><i class="bi bi-speedometer2"></i></div>
+          <h5 class="card-title">Presión</h5>
+          <div class="sensor-value">{{ datos.presion_bmp }} hPa</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Termopar -->
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card sensor-card {{ 'bg-valid' if (datos.temp_max_c and datos.temp_max_c != 0) or (datos.temp_max_f and datos.temp_max_f != 0) else 'bg-invalid' }}">
+        <div class="card-body text-center">
+          <div class="sensor-icon"><i class="bi bi-thermometer-sun"></i></div>
+          <h5 class="card-title">Termopar</h5>
+          <div class="sensor-value small">
+            <strong>{{ datos.temp_max_c }} °C</strong><br>
+            <strong>{{ datos.temp_max_f }} °F</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Temperatura Raspberry Pi -->
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card sensor-card {{ 'bg-valid' if datos.temp_raspberry and datos.temp_raspberry != 0 else 'bg-invalid' }}">
+        <div class="card-body text-center">
+          <div class="sensor-icon"><i class="bi bi-cpu"></i></div>
+          <h5 class="card-title">Temp. Raspberry Pi</h5>
+          <div class="sensor-value">
+            {{ datos.temp_raspberry }} °C
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Aquí empieza la fila con GPS y Fecha y Hora lado a lado -->
+    <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+      <div class="card sensor-card {{ 'bg-valid' if datos.lat and datos.lng else 'bg-invalid' }}">
+        <div class="card-body text-center">
+          <div class="sensor-icon"><i class="bi bi-geo-alt-fill"></i></div>
+          <h5 class="card-title">Ubicación GPS</h5>
+          <div class="sensor-value small text-start">
+            <strong>Lat:</strong> {{ datos.lat }}<br>
+            <strong>Lng:</strong> {{ datos.lng }}<br>
+            <strong>Altitud:</strong> {{ datos.altitud }} m<br>
+            <strong>Satélites:</strong> {{ datos.satelites }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+      <div class="card sensor-card {{ 'bg-valid' if datos.fecha and datos.hora else 'bg-invalid' }}">
+        <div class="card-body text-center">
+          <div class="sensor-icon"><i class="bi bi-clock"></i></div>
+          <h5 class="card-title">Fecha y Hora</h5>
+          {% if datos.fecha and datos.hora %}
+            <div class="sensor-value small">{{ datos.fecha }} {{ datos.hora }}</div>
+          {% else %}
+            <div class="sensor-value small text-muted">No disponible</div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Históricos -->
+  <div class="mt-5 text-start">
+    <h1 class="mb-4 text-center"><i class="bi bi-graph-up-arrow"></i> Históricos de Sensores</h1>
+
+    <div class="chart-controls">
+      <label for="timeRange" class="form-label">Mostrar por:</label>
+      <select id="timeRange" class="form-select w-auto" onchange="updateChart()">
+        <option value="dia">Día</option>
+        <option value="semana" selected>Semana</option>
+        <option value="mes">Mes</option>
+      </select>
+
+      <label for="sensorSelect" class="form-label">Sensor:</label>
+      <select id="sensorSelect" class="form-select w-auto" onchange="updateChart()">
+        <option value="ml8511">ML8511</option>
+        <option value="ml8511_2">ML8511 #2</option>
+        <option value="visible">Luz Visible</option>
+        <option value="visible_2">Luz Visible #2</option>
+        <option value="humedad">Humedad</option>
+        <option value="temp_dht">Temp. DHT11</option>
+        <option value="temp_bmp">Temp. BMP280</option>
+        <option value="presion_bmp">Presión</option>
+        <option value="altitud">Altitud</option>
+        <option value="temp_max_c">Termopar °C</option>
+        <option value="temp_max_f">Termopar °F</option>
+        <option value="temp_raspberry">Temp. Raspberry Pi</option>
+      </select>
+      <label for="startDate" class="form-label">Desde:</label>
+      <input type="datetime-local" id="startDate" class="form-control w-auto" onchange="updateChart()">
+
+      <label for="endDate" class="form-label">Hasta:</label>
+      <input type="datetime-local" id="endDate" class="form-control w-auto" onchange="updateChart()">
+    </div>
+
+    <div class="chart-container-glass">
+      <canvas id="sensorChart" height="400"></canvas> <!-- Altura del gráfico aumentada a 400 -->
+    </div>
+  </div>
+
+  <!-- Volver -->
+  <div class="mt-5 text-center">
+    <a href="/" class="btn btn-outline-secondary btn-lg">
+      <i class="bi bi-house-door"></i> Volver al inicio
+    </a>
+  </div>
+</div>
+
+<!-- Script de Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // Obtener el contexto del canvas
+  const ctx = document.getElementById('sensorChart').getContext('2d');
+
+  // Inicializar el gráfico de Chart.js
+  let sensorChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: [],
+      datasets: []
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false, // Permite que el gráfico no mantenga su relación de aspecto original
+      plugins: {
+        legend: {
+          labels: {
+            color: 'white' // Color del texto de la leyenda
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: {
+            color: 'white' // Color del texto del eje X
+          },
+          grid: {
+            color: 'rgba(255, 255, 255, 0.1)' // Color de las líneas de la cuadrícula del eje X
+          }
+        },
+        y: {
+          ticks: {
+            color: 'white' // Color del texto del eje Y
+          },
+          grid: {
+            color: 'rgba(255, 255, 255, 0.1)' // Color de las líneas de la cuadrícula del eje Y
+          }
+        }
+      }
+    }
+  });
+
+  // Colores para cada tipo de sensor en el gráfico
+  const sensorColors = {
+    ml8511: '#ff4081', /* Rosa Vibrante */
+    temp_raspberry: '#1976d2', /* Azul Oscuro */
+    ml8511_2: '#e040fb', /* Morado Brillante */
+    visible: '#4caf50', /* Verde Medio */
+    visible_2: '#388e3c', /* Verde Oscuro */
+    humedad: '#2196f3', /* Azul Cielo */
+    temp_dht: '#ff9800', /* Naranja Ámbar */
+    temp_bmp: '#ffb300', /* Naranja Claro */
+    presion_bmp: '#607d8b', /* Gris Azulado */
+    altitud: '#795548', /* Marrón Tierra */
+    temp_max_c: '#f44336', /* Rojo Vibrante */
+    temp_max_f: '#c62828' /* Rojo Oscuro */
+  };
+
+  /**
+   * Actualiza el gráfico de sensores haciendo una llamada a la API
+   * y renderizando los datos recibidos.
+   */
+  function updateChart() {
+    const range = document.getElementById('timeRange').value;
+    const sensor = document.getElementById('sensorSelect').value;
+    const startDate = document.getElementById('startDate').value;
+    const endDate = document.getElementById('endDate').value;
+
+    // Construir la URL con parámetros de fecha si están definidos
+    let url = `/sensor_data/${range}`;
+    const params = [];
+    if (startDate) params.push(`start=${encodeURIComponent(startDate)}`);
+    if (endDate) params.push(`end=${encodeURIComponent(endDate)}`);
+    if (params.length > 0) url += '?' + params.join('&');
+
+    fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Mapear los datos recibidos a un formato utilizable por el gráfico
+        const labels = data.g_labels;
+        const sensorData = {
+          ml8511: data.g_ml8511,
+          ml8511_2: data.g_ml8511_2,
+          visible: data.g_visible,
+          visible_2: data.g_visible_2,
+          humedad: data.g_humedad,
+          temp_dht: data.g_temp_dht,
+          temp_bmp: data.g_temp_bmp,
+          presion_bmp: data.g_presion_bmp,
+          altitud: data.g_altitud,
+          temp_max_c: data.g_temp_max_c,
+          temp_max_f: data.g_temp_max_f,
+          temp_raspberry: data.g_temp_raspberry
+        };
+
+        // Actualizar los datos del gráfico
+        sensorChart.data.labels = labels;
+        sensorChart.data.datasets = [{
+          label: document.querySelector(`#sensorSelect option[value="${sensor}"]`).textContent,
+          data: sensorData[sensor],
+          borderColor: sensorColors[sensor],
+          backgroundColor: 'transparent',
+          tension: 0.3, // Suaviza la línea del gráfico
+          pointRadius: 3, // Tamaño de los puntos
+          pointHoverRadius: 5 // Tamaño de los puntos al pasar el ratón
+        }];
+
+        // Renderizar el gráfico con los nuevos datos
+        sensorChart.update();
+      })
+      .catch(error => console.error('Error al obtener los datos:', error));
+  }
+
+  // Llamar a updateChart al cargar la página para mostrar los datos iniciales
+  document.addEventListener('DOMContentLoaded', updateChart);
+</script>
+</body>
+</html>

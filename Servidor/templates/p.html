@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Monitor de Sensores</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+</head>
+<body class="bg-gray-100 text-gray-900 font-sans">
+
+    <header class="bg-blue-600 text-white p-4 shadow">
+        <h1 class="text-2xl font-bold">Sistema de Monitoreo</h1>
+    </header>
+
+    <main class="p-4 space-y-6">
+        <section>
+            <h2 class="text-xl font-semibold mb-2">Datos Recientes</h2>
+            <div id="dashboard" class="bg-white p-4 rounded shadow">
+                <p>Cargando datos...</p>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-semibold mb-2">Consulta Avanzada</h2>
+            <form id="consultaForm" class="bg-white p-4 rounded shadow space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium">Fecha inicio:</label>
+                        <input type="date" name="fecha_inicio" class="mt-1 block w-full border-gray-300 rounded" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium">Fecha fin:</label>
+                        <input type="date" name="fecha_fin" class="mt-1 block w-full border-gray-300 rounded" required>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium">Sensor:</label>
+                    <select name="sensor" class="mt-1 block w-full border-gray-300 rounded">
+                        <option value="">Todos</option>
+                        <option value="dht11">DHT11</option>
+                        <option value="guva">GUVA</option>
+                        <option value="uv">UV</option>
+                        <option value="gps">GPS</option>
+                    </select>
+                </div>
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Buscar</button>
+            </form>
+            <div id="resultadoConsulta" class="mt-4 bg-white p-4 rounded shadow">
+                <!-- Aquí se mostrarán los resultados -->
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-semibold mb-2">Exportar Datos</h2>
+            <div class="flex space-x-4">
+                <button onclick="exportar(true)" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Exportar con imágenes</button>
+                <button onclick="exportar(false)" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">Exportar sin imágenes</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        async function cargarDashboard() {
+            try {
+                const res = await fetch('/dashboard');
+                const html = await res.text();
+                document.getElementById('dashboard').innerHTML = html;
+            } catch (err) {
+                document.getElementById('dashboard').innerHTML = '<p>Error al cargar los datos.</p>';
+            }
+        }
+
+        document.getElementById('consultaForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const params = new URLSearchParams(formData);
+            try {
+                const res = await fetch('/consulta?' + params.toString());
+                const html = await res.text();
+                document.getElementById('resultadoConsulta').innerHTML = html;
+            } catch (err) {
+                document.getElementById('resultadoConsulta').innerHTML = '<p>Error al consultar.</p>';
+            }
+        });
+
+        function exportar(conImagenes) {
+            const url = conImagenes ? '/exportar' : '/exportar_sin_imagenes';
+            window.location.href = url;
+        }
+
+        // Inicializa
+        cargarDashboard();
+    </script>
+</body>
+</html>
