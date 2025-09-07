@@ -1,12 +1,12 @@
-Output: Gerber Files
-Type  : Gerber
-From  : Variant [[No Variations]] of Project [SkyExternal.PrjPcb]
-   Generated File[SkyTotalExternal.GBL]
-   Generated File[SkyTotalExternal.EXTREP]
-   Generated File[SkyTotalExternal.REP]
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [SkyExternal.PrjPcb]
+   Generated File[SkyTotalExternal.TXT]
+   Generated File[SkyTotalExternal.LDP]
+   Generated File[SkyTotalExternal.DRR]
 
 
 Files Generated   : 3
 Documents Printed : 0
 
-Finished Output Generation At 15:44:53 On 29/07/2025
+Finished Output Generation At 9:24:37 On 07/08/2025

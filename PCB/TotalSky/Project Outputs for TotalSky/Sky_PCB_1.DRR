@@ -1,14 +1,15 @@
 ----------------------------------------------------------------------------------------------------------------------------------
-NCDrill File Report For: SkyTotalExternal.PcbDoc   07/08/2025  9:24:37
+NCDrill File Report For: Sky_PCB_1.PcbDoc   07/08/2025  9:43:47
 ----------------------------------------------------------------------------------------------------------------------------------
 
 Layer Pair : Top Layer to Bottom Layer
-ASCII RoundHoles File : SkyTotalExternal.TXT
+ASCII RoundHoles File : Sky_PCB_1.TXT
 
 Tool       Hole Size               Hole Tolerance               Hole Type       Hole Count   Plated         Tool Travel
 ----------------------------------------------------------------------------------------------------------------------------------
-T1      0.9mm (35mil)                                             Round             14        PTH        43.34mm (1.71inch)
+T1      0.9mm (35mil)                                             Round             94        PTH        475.44mm (18.72inch)
+T2      3mm (118mil)                                              Round             4         PTH        282.87mm (11.14inch)
 ----------------------------------------------------------------------------------------------------------------------------------
-Totals                                                                              14
+Totals                                                                              98
 
 Total Processing Time (hh:mm:ss) : 00:00:00
