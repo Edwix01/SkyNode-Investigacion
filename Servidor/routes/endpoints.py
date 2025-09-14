@@ -77,7 +77,8 @@ def capturar_y_guardar_imagen(nombre_imagen):
 
     cam.capture_raw(nombre_imagen)
     cam.close()
-
+    mover_a_posiciones(0)
+    
 def get_raspberry_temp():
     try:
         with open("/sys/class/thermal/thermal_zone0/temp", "r") as f:
@@ -457,9 +458,8 @@ async def recibir_datos(data: SensorData, background_tasks: BackgroundTasks):
     else:
         ventilador_state("off")
 
-    mover_a_posiciones(0)  # Destapar cubierta de la cámara
+# Destapar cubierta de la cámara
     background_tasks.add_task(capturar_y_guardar_imagen, nombre_imagen)
-    mover_a_posiciones(1)  # Cerrar cubierta de la cámara
 
     try:
         conn = obtener_conexion()
